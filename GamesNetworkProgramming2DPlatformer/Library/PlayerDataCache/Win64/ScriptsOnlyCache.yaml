@@ -21,6 +21,8 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
+    PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbody2DView
@@ -50,15 +52,11 @@ ScriptsOnlyBuild:
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
-    Unity.Timeline.Editor.dll:
-    - TimelineProjectSettings
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -338,7 +336,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6928}
     - Class: 114
-      Script: {instanceID: 29804}
+      Script: {instanceID: 28634}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1238,7 +1236,7 @@ ScriptsOnlyBuild:
     className: AdditiveNetworkManager
   - hash:
       serializedVersion: 2
-      Hash: ca4351fa3cfb68f0b70260665a7b562c
+      Hash: aae728832b4040bc7b99f9dc7d5bdf88
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AIPatrol
@@ -2491,4 +2489,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Game.unity
   - Assets/Scenes/EndScene.unity
   - Assets/Scenes/VictoryScreen.unity
-  playerPath: D:/GamesNetworkProgrammingv3/GamesNetworkProgramming2DPlatformer/test8/GamesNetworkProgramming2DPlatformer.exe
+  playerPath: D:/Github repositories/GamesNetworkProgramming/GamesNetworkProgramming2DPlatformer/finalbuild/GamesNetworkProgramming2DPlatformer.exe

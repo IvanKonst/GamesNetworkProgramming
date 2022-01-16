@@ -74,6 +74,7 @@ public class Movement : MonoBehaviourPun, IPunObservable
     private void Update()
     {
         healthText.text = playerHealth.ToString();
+        livesText.text = "Team lives : " + spawn.lives.ToString();
         if (view.IsMine)
         {
            
@@ -95,7 +96,7 @@ public class Movement : MonoBehaviourPun, IPunObservable
     }
     private void FixedUpdate()
     {
-        livesText.text = "Team lives : " + spawn.lives.ToString();
+        
     }
     //Letting the player Jump and to jump on walls using wall jump
     private void Jump()

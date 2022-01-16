@@ -19,6 +19,7 @@ public class AIPatrol : MonoBehaviourPun, IPunObservable
     public Text enemyHealthText;
     public Transform enemySpawnPos;
     public Text ScoreText;
+    public Animator anim;
 
     //Setting Player Score;
     void SetScoreText()
@@ -39,29 +40,39 @@ public class AIPatrol : MonoBehaviourPun, IPunObservable
 
     void Update()
     {
-        SetScoreText();
-        enemyHealthText.text = enemyHealth.ToString();
-        if (mustPatrol)
-        {
-            Patrol();
+        
+            SetScoreText();
+        
+       
+        if (PhotonNetwork.IsMasterClient)
+        {          
+            if (mustPatrol)
+            {
+                Patrol();
+            }       
         }
-        if(enemyHealth == 0 )
-        {
+        if(photonView.IsMine)
+        { 
+            if (enemyHealth == 0)
+            {
+
+            photonView.RPC("Die", RpcTarget.All);
             Die();
 
+            }
         }
-
-            if (spawn.Score == 5)
+        if (spawn.Score == 10)
         {
-            VictoryScreen();
+            photonView.RPC("VictoryScreen", RpcTarget.All);
         }
     }
     private void FixedUpdate()
     {
-        if(mustPatrol)
+        enemyHealthText.text = enemyHealth.ToString();
+        if (mustPatrol)
         {
             mustTurn = !Physics2D.OverlapCircle(groundCheckPos.position, 0.5f, groundLayer);
-        }
+        }     
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -76,7 +87,10 @@ public class AIPatrol : MonoBehaviourPun, IPunObservable
         //Triggers when the enemy is colliding with Fireball
         if (other.gameObject.tag == "Fireball")
         {
-            enemyHealth -= 20;
+            if (photonView.IsMine)
+            {
+                photonView.RPC("EnemyHit", RpcTarget.All);
+            }
         }
       
 
@@ -90,13 +104,20 @@ public class AIPatrol : MonoBehaviourPun, IPunObservable
         }
         rb.velocity = new Vector2(walkSpeed * Time.fixedDeltaTime, rb.velocity.y);
     }
-    
+    [PunRPC]
+    void EnemyHit()
+    {
+        enemyHealth -= 20;
+    }
     //Destroying the enemy
+    [PunRPC]
     void Die()
     {
         
         Destroy(gameObject);
-        spawn.Score++;
+      
+            spawn.Score++;
+        
       
     }
     //Changing enemy walk direction and rotation
@@ -130,6 +151,7 @@ public class AIPatrol : MonoBehaviourPun, IPunObservable
     }
 
     //Ending the game
+    [PunRPC]
     public void VictoryScreen()
     {
         SceneManager.LoadScene("VictoryScreen");
